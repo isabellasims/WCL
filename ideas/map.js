@@ -43,11 +43,20 @@ function ready(data){
     ward6 = wards.features[1];
     ward7 = wards.features[2];
     ward8 = wards.features[0];
-    
+
+
+
+
+
     console.log(data);
     addSources();
     addLayers();
     addPCB();
-   
+
+    const PCBextent = d3.extent(wards.features, d => { // determine which districts have the least and greatest number of calls
+        return d.properties.PCB; // d3.extent determines min & max values of an array
+    });
+    console.log("extent",PCBextent);
+
 }
 
