@@ -47,6 +47,7 @@ function ready(data){
     console.log(data);
     addSources();
     addLayers();
+    addPCB();
    
 }
 
