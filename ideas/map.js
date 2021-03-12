@@ -1,3 +1,4 @@
+// globalize variables so they can be accessed in other JS files
 const dc = [-77.0090, 38.8898];
 let wards;
 let ward1;
@@ -8,6 +9,7 @@ let ward5;
 let ward6;
 let ward7;
 let ward8;
+let PCBextent;
 
 
 mapboxgl.accessToken = 'pk.eyJ1IjoiamFnb2R3aW4iLCJhIjoiY2lnOGQxaDhiMDZzMXZkbHYzZmN4ZzdsYiJ9.Uwh_L37P-qUoeC-MBSDteA';
@@ -44,19 +46,19 @@ function ready(data){
     ward7 = wards.features[2];
     ward8 = wards.features[0];
 
-
-
+    addPCB();
+    PCBextent = d3.extent(wards.features, d => { // determine which districts have the least and greatest number of calls
+        return d.properties.PCB; // d3.extent determines min & max values of an array
+    });
+    console.log("extent",PCBextent);
 
 
     console.log(data);
     addSources();
     addLayers();
-    addPCB();
 
-    const PCBextent = d3.extent(wards.features, d => { // determine which districts have the least and greatest number of calls
-        return d.properties.PCB; // d3.extent determines min & max values of an array
-    });
-    console.log("extent",PCBextent);
+
+
 
 }
 

@@ -15,29 +15,32 @@ function addLayers(){
         }
     };
 
-    // const PCBfillLayer = {
-    //     'id': 'PCB-fill',
-    //     'type': 'fill',
-    //     'source': 'wardLayer',
-    //     'paint': {
-    //         "fill-color": {
-    //             "property": "count",
-    //             "stops": [ // ordinal filling methodology
-    //                 [districtExtent[0], "yellow"],
-    //                 [districtExtent[1], "red"]
-    //                 // ADDS COL BREWER
-    //                 // [districtExtent[0], '#ffeda0'], // using color brewer
-    //                 // [districtExtent[1]*0.5, '#feb24c'],
-    //                 // [districtExtent[1], '#f03b20']
-    //             ]
-    //         },
-    //         'fill-opacity': 0.4
-    //     }
-    // };
+    const PCBfillLayer = {
+        'id': 'PCB-fill',
+        'type': 'fill',
+        'source': 'wardData',
+        'paint': {
+            "fill-color": {
+                "property": "PCB",
+                "stops": [ // ordinal filling methodology
+                    [PCBextent[0], "yellow"],
+                    [PCBextent[1], "red"]
+                    // ADDS COL BREWER
+                    // [districtExtent[0], '#ffeda0'], // using color brewer
+                    // [districtExtent[1]*0.5, '#feb24c'],
+                    // [districtExtent[1], '#f03b20']
+                ]
+            },
+            'fill-opacity': 0.4
+        }
+    };
 
 
+    console.log(PCBextent);
+    console.log("type",PCBextent[0]);
 
     map.addLayer(wardLayer);
+    map.addLayer(PCBfillLayer);
 
 
 }
