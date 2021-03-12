@@ -1,8 +1,7 @@
-
 function addSources() {
     map.addSource('wardData', {
         'type': 'geojson',
-        'data': wards[0] // wards[0] just bc of how data is formatted
+        'data': wards 
     });
 }
 

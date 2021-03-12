@@ -1,5 +1,13 @@
 const dc = [-77.0090, 38.8898];
 let wards;
+let ward1;
+let ward2;
+let ward3;
+let ward4;
+let ward5;
+let ward6;
+let ward7;
+let ward8;
 
 
 mapboxgl.accessToken = 'pk.eyJ1IjoiamFnb2R3aW4iLCJhIjoiY2lnOGQxaDhiMDZzMXZkbHYzZmN4ZzdsYiJ9.Uwh_L37P-qUoeC-MBSDteA';
@@ -18,74 +26,27 @@ const wardGeoJsonUrl = "https://opendata.arcgis.com/datasets/0ef47379cbae44e8826
 
 map.on('load', function(){
     console.log('about to load data');
-    //Insert data loading code here
-    Promise.all([  // loads data as an array, to be indexed & assigned in the ready callback
+
+    Promise.all([
         d3.json(wardGeoJsonUrl),
     ]).then(ready);
 });
 
 function ready(data){
     wards = data;
+    wards = wards[0]; // just removing un needed attrs
+    ward1 = wards.features[4];
+    ward2 = wards.features[3];
+    ward3 = wards.features[6];
+    ward4 = wards.features[7];
+    ward5 = wards.features[5];
+    ward6 = wards.features[1];
+    ward7 = wards.features[2];
+    ward8 = wards.features[0];
+    
     console.log(data);
     addSources();
     addLayers();
-    // map.addSource('wardData', {
-    //     'type': 'geojson',
-    //     'data': wards[0],
-    //
-    //
-    // });
-    //
-    // const wardLayer = {
-    //     'id': 'wardLayer',
-    //     'type': 'line',
-    //     'source': 'wardData',
-    //     'paint': {
-    //         'line-color': 'rgb(0,0,0)'
-    //     }
-    // };
-    // map.addLayer(wardLayer);
+   
 }
 
-
-
-
-
-//
-//
-//
-// //set style of ward layer
-// function style(feature) {
-//     return {
-//         weight: 2,
-//         opacity: 0.8,
-//         color: 'blue',
-//         fillOpacity: 0.0
-//     };
-// }
-//
-// //Add DC Ward geojson to map
-// $.getJSON(wardGeoJsonUrl, function (data) {
-//     var geojson = L.geoJson(data, {
-//         style: style,
-//         onEachFeature: function (feature, layer) {
-//             //create popup for each ward polygon
-//             layer.bindPopup(feature.properties.NAME + "<br>" + "Rep. " + feature.properties.REP_NAME + "," + "<br>" + feature.properties.REP_PHONE)
-//         }
-//     });
-//
-//     geojson.addTo(map);
-//
-// });
-//
-// //open About This panel
-// function openAbout() {
-//     $("#about").show();
-//     return false;
-// }
-//
-// //close About This panel
-// function closeAbout() {
-//     $("#about").hide();
-//     return false;
-// }
